@@ -1,4 +1,5 @@
 # Phase 2 — Field List
+## Data Fields
 - CustomerID
 - FirstName
 - LastName
