@@ -1,1 +1,11 @@
 # Phase 2 — Field List
+- CustomerID
+- FirstName
+- LastName
+- Email
+- Phone
+- CheckoutID
+- Quantity
+- UnitPrice
+- ItemCost
+- TaxRate
