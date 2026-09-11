@@ -1,5 +1,5 @@
 # Phase 1 — Domain
-Misson Statement
+## Misson Statement
   The database tracks baseball card customer orders and the products associated with each order for online businesses.
 Mission Objectives
 - Retrieve a list of all orders by a given customers
