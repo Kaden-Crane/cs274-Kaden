@@ -2,7 +2,7 @@
 ## Data Fields
 | Field | Why needed | Notes / Uncertainty |
 | --- | --- | --- |
-| CustomerID | Identifier for each customer | auto-assign |
+| CustomerID(PK) | Identifier for each customer | auto-assign |
 | FirstName | For customer information | ... |
 | LastName | For customer information | ...|
 | Email | For customer information | ... |
