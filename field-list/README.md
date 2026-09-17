@@ -3,7 +3,7 @@
 | Field | Why needed | Notes / Uncertainty |
 | --- | --- | --- |
 ## Customer 
-| Customer info |  |  |
+| Customers |  |  |
 | --- | --- | --- |
 | CustomerID(PK) | Identifier for each customer | auto-assign |
 | FirstName | For customer information | ... |
