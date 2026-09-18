@@ -45,6 +45,7 @@
 | BoxID(FK-> Box) | ... | ... |
 | Quantity(PK) | Identifier for number of boxes bought | ... |
 | CheckoutID | Identifier for what pack of cards is bought | ... |
+| Date | Identifier for the time when an order was made | ... | 
 ## Payment
 | Payment | Stores info for how much the order costs before taxes, Has an ID for the price of the order |  |
 | --- | --- | --- |
