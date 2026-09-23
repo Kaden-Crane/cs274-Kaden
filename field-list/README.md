@@ -25,34 +25,34 @@
 | --- | --- | --- |
 | SeriesID(PK) | ... | ... |
 | SeriesName | Name of what the packs belong to | ... |
-| Year(PK) | Identifier for how old or new the packs are | ... |
+| Year | Identifier for how old or new the packs are | ... |
 ## Box
 | Box | Stores box info, the amount of cards and packs are in each box, and an ID for each box |  |
 | --- | --- | --- |
 | BoxID(PK) |Identifier for each box for the customer | ... |
-| BrandID(FK-> Brand) |Identifier for what brand is being used to by packs | ... |
-| SeriesID(FK-> Series) | ... | ... |
-| Year(FK-> Series) | Identifier for how old or new the packs are | ... |
-| Type(PK) | Identifier for what the pack is inside the box | ... |
+| BrandID(FK-> BrandID) |Identifier for what brand is being used to by packs | ... |
+| SeriesID(FK-> SeriesID) | ... | ... |
+| Year(FK-> SeriesID) | Identifier for how old or new the packs are | ... |
+| Type | Identifier for what the pack is inside the box | ... |
 | PksPerBox | Identifier for how many packs are in each box | ... |
 | CardsPerPack | Identifier for how many cards are in each pack | ... |
-| Price(PK) | Identifier for the cost of the box | ... |
+| Price | Identifier for the cost of the box | ... |
 ## Orders
 | Orders | Stores the info for the number of boxes that are in the order , has an ID for what what is in the order |  |
 | --- | --- | --- |
-| OrderID | ... | ... |
+| OrderID(PK) | ... | ... |
 | CustomerID(FK-> Customers) | ... | ... |
-| BoxID(FK-> Box) | ... | ... |
-| Quantity(PK) | Identifier for number of boxes bought | ... |
+| BoxID(FK-> BoxID) | ... | ... |
+| Quantity | Identifier for number of boxes bought | ... |
 | CheckoutID | Identifier for what pack of cards is bought | ... |
 | Date | Identifier for the time when an order was made | ... | 
 ## Payment
 | Payment | Stores info for how much the order costs before taxes, Has an ID for the price of the order |  |
 | --- | --- | --- |
 | PaymentID(PK) | ... | ... |
-| Price(FK-> Box) | ... | ... |
-| Quantity(FK-> Orders) | ... | ... |
-| BoxID(FK) |Identifier for each box for the customer | ... |
+| Price(FK-> BoxID) | ... | ... |
+| Quantity(FK-> OrderID) | ... | ... |
+| BoxID(FK-> BoxID) |Identifier for each box for the customer | ... |
 
 ## Calculated Field (do Not store)
 | Field | Derivation |
