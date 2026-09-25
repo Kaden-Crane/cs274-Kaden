@@ -8,12 +8,12 @@
 | CustomerID(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
 | FirstName | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
 | LastName | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
-| Email | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| Email | VARCHAR(254) | NOT NULL | --- | UNIQUE |
 | Phone | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
 | Add1 | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
 | Add2 | VARCHAR(50) | NULL | --- | Not sure what to put after |
 | City | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
-| State | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| State | CHAR(2) | NOT NULL | --- | Not sure what to put after |
 | Zip | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
 ## Brand
 | Brand |  |  |  |  |
@@ -37,7 +37,7 @@
 | Type | VARCHAR(50) | NULL | --- | Not sure what to put after |
 | PksPerBox | FLOAT | NOT NULL | --- | Not sure what to put after 
 | CardsPerPack | DOUBLE | NOT NULL | --- | Not sure what to put after |
-| Price | DECIMAL | NOT NULL | --- | Not sure what to put after|  
+| Price | DECIMAL(10,2) | NOT NULL | --- | Not sure what to put after|  
 ## Orders
 | Orders |  |  |  |  |
 | --- | --- | --- | --- | --- |
