@@ -1,58 +1,59 @@
 # Phase 2 — Field List
 ## Data Fields 
-| Field | Why needed | Notes / Uncertainty |
-| --- | --- | --- |
+| Field | Type | Null? | Default | Notes/ Constraints |
+| --- | --- | --- | --- | --- |
 ## Customer 
-| Customers | Stores name, contact info, and ID each person who buys boxes of baseball cards |  |
-| --- | --- | --- |
-| CustomerID(PK) | Identifier for each customer | auto-assign |
-| FirstName | For customer information | ... |
-| LastName | For customer information | ...|
-| Email | For customer information | ... |
-| Phone | For direct contact with customer | ... |
-| Add1 | Identifier for customer address | --- |
-| Add2 | identifier for the apartment or box # | --- |
-| City | Identifier for the customer's current city | ... |
-| State | Identifier for the customer's current state | ... |
-| Zip | Identifier for the customer's current zip | ... |
+| Customer |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| CustomerID(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
+| FirstName | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| LastName | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| Email | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| Phone | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| Add1 | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| Add2 | VARCHAR(50) | NULL | --- | Not sure what to put after |
+| City | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| State | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| Zip | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
 ## Brand
-| Brand | Stores name, and ID for the brand on the packs |  |
-| --- | --- | --- |
-| BrandID(PK) | Identifier for the individual brand names | ... |
-| BrandName | Identifier for the name of the brand | ... |
+| Brand |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| BrandID(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
+| BrandName | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
 ## Series
-| Series | Stores the name and ID for how new the packs are |  |
-| --- | --- | --- |
-| SeriesID(PK) | ... | ... |
-| SeriesName | Name of what the packs belong to | ... |
-| Year | Identifier for how old or new the packs are | ... |
+| Series |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| Series |  |  |  |  |
+| SeriesID(PK) |INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
+| SeriesName | VARCHAR(50)  | NOT NULL | --- | Not sure what to put after |
+| Year(PK) | YEAR | NOT NULL | --- | Not sure what to put after |
 ## Box
-| Box | Stores box info, the amount of cards and packs are in each box, and an ID for each box |  |
-| --- | --- | --- |
-| BoxID(PK) |Identifier for each box for the customer | ... |
-| BrandID(FK-> BrandID) |Identifier for what brand is being used to by packs | ... |
-| SeriesID(FK-> SeriesID) | ... | ... |
-| Year(FK-> SeriesID) | Identifier for how old or new the packs are | ... |
-| Type | Identifier for what the pack is inside the box | ... |
-| PksPerBox | Identifier for how many packs are in each box | ... |
-| CardsPerPack | Identifier for how many cards are in each pack | ... |
-| Price | Identifier for the cost of the box | ... |
+| Box |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| BoxID(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
+| BrandID(FK-> BrandID) |INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| SeriesID(FK-> SeriesID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| Year(FK-> SeriesID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| Type | VARCHAR(50) | NULL | --- | Not sure what to put after |
+| PksPerBox | FLOAT | NOT NULL | --- | Not sure what to put after 
+| CardsPerPack | DOUBLE | NOT NULL | --- | Not sure what to put after |
+| Price | DECIMAL | NOT NULL | --- | Not sure what to put after|  
 ## Orders
-| Orders | Stores the info for the number of boxes that are in the order , has an ID for what what is in the order |  |
-| --- | --- | --- |
-| OrderID(PK) | ... | ... |
-| CustomerID(FK-> Customers) | ... | ... |
-| BoxID(FK-> BoxID) | ... | ... |
-| Quantity | Identifier for number of boxes bought | ... |
-| CheckoutID | Identifier for what pack of cards is bought | ... |
-| Date | Identifier for the time when an order was made | ... | 
+| Orders |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| OrderID(PK) |INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
+| CustomerID(FK-> Customers) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| BoxID(FK-> BoxID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| Quantity(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
+| CheckoutID | INT INSIGNED | NOT NULL | AUTO_INCREMENT | No PK |
+| Date | Date | NOT NULL | --- | Not sure what to put after | 
 ## Payment
-| Payment | Stores info for how much the order costs before taxes, Has an ID for the price of the order |  |
-| --- | --- | --- |
-| PaymentID(PK) | ... | ... |
-| Price(FK-> BoxID) | ... | ... |
-| Quantity(FK-> OrderID) | ... | ... |
-| BoxID(FK-> BoxID) |Identifier for each box for the customer | ... |
+| Payment |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| PaymentID(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
+| Price(FK-> BoxID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| Quantity(FK-> OrderID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| BoxID(FK-> BoxID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
 
 ## Calculated Field (do Not store)
 | Field | Derivation |
