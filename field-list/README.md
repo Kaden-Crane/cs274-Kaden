@@ -8,13 +8,13 @@
 | CustomerID(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
 | FirstName | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
 | LastName | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
-| Email | VARCHAR(254) | NOT NULL | --- | UNIQUE |
-| Phone | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| Email | VARCHAR(254) | NULL | --- | UNIQUE, OPTIONAL BUT UNIQUE IF SET |
+| Phone | VARCHAR(50) | NULL | --- | UNIQUE, OPTIONAL BUT UNIQUE IF SET |
 | Add1 | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
 | Add2 | VARCHAR(50) | NULL | --- | Not sure what to put after |
-| City | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| City | VARCHAR(20) | NOT NULL | --- | Not sure what to put after |
 | State | CHAR(2) | NOT NULL | --- | Not sure what to put after |
-| Zip | VARCHAR(50) | NOT NULL | --- | Not sure what to put after |
+| Zip | VARCHAR(10) | NOT NULL | --- | Not sure what to put after |
 ## Brand
 | Brand |  |  |  |  |
 | --- | --- | --- | --- | --- |
@@ -23,7 +23,6 @@
 ## Series
 | Series |  |  |  |  |
 | --- | --- | --- | --- | --- |
-| Series |  |  |  |  |
 | SeriesID(PK) |INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
 | SeriesName | VARCHAR(50)  | NOT NULL | --- | Not sure what to put after |
 | Year(PK) | YEAR | NOT NULL | --- | Not sure what to put after |
@@ -35,9 +34,9 @@
 | SeriesID(FK-> SeriesID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
 | Year(FK-> SeriesID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
 | Type | VARCHAR(50) | NULL | --- | Not sure what to put after |
-| PksPerBox | FLOAT | NOT NULL | --- | Not sure what to put after 
-| CardsPerPack | DOUBLE | NOT NULL | --- | Not sure what to put after |
-| Price | DECIMAL(10,2) | NOT NULL | --- | Not sure what to put after|  
+| PksPerBox | FLOAT | NOT NULL | --- | CHECK FOR NO 0 | 
+| CardsPerPack | DOUBLE | NOT NULL | --- | CHECK FOR NO 0 |
+| Price | DECIMAL(10,2) | NOT NULL | --- | CHECK FOR NO 0 |  
 ## Orders
 | Orders |  |  |  |  |
 | --- | --- | --- | --- | --- |
@@ -46,7 +45,7 @@
 | BoxID(FK-> BoxID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
 | Quantity(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
 | CheckoutID | INT INSIGNED | NOT NULL | AUTO_INCREMENT | No PK |
-| Date | Date | NOT NULL | --- | Not sure what to put after | 
+| Date | DATETIME | NOT NULL | TIMESTAMPS | DEFAULT CURRENT_TIMESTAMP, ON UPDATE CURRENT_TIMESTAMP | 
 ## Payment
 | Payment |  |  |  |  |
 | --- | --- | --- | --- | --- |
