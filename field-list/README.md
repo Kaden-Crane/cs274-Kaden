@@ -37,22 +37,33 @@
 | PksPerBox | FLOAT | NOT NULL | --- | CHECK FOR NO 0 | 
 | CardsPerPack | DOUBLE | NOT NULL | --- | CHECK FOR NO 0 |
 | Price | DECIMAL(10,2) | NOT NULL | --- | CHECK FOR NO 0 |  
+
+##OrderItem
+| OrderItem |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| OrderItemID | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
+| OrderID(FK-> Order) |INT INSIGNED | NOT NULL | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| BoxID(FK-> Box) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| Quantity | INT UNSIGNED | AUTO_INCREMENT | No PK |
+| UnitPrice |  |  |  |
+
 ## Orders
 | Orders |  |  |  |  |
 | --- | --- | --- | --- | --- |
 | OrderID(PK) |INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
 | CustomerID(FK-> Customers) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
-| BoxID(FK-> BoxID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
-| Quantity(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
-| CheckoutID | INT INSIGNED | NOT NULL | AUTO_INCREMENT | No PK |
-| Date | DATETIME | NOT NULL | TIMESTAMPS | DEFAULT CURRENT_TIMESTAMP, ON UPDATE CURRENT_TIMESTAMP | 
+| OrderDate |  |  |  |
+| OrderStatus |  |  |  |
+| OrderTotal |  |  |  |
 ## Payment
 | Payment |  |  |  |  |
 | --- | --- | --- | --- | --- |
 | PaymentID(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
-| Price(FK-> BoxID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
-| Quantity(FK-> OrderID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
-| BoxID(FK-> BoxID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| OrderID(FK-> Order) |INT INSIGNED | NOT NULL | AUTO_INCREMENT | FK - surrogate, auto-assign |
+| PaymentDate |  |  |  |
+| Amount |  |  |  |
+| PaymentMethod |  |  |  |
+| PaymentStatus |  |  |  |
 
 ## Calculated Field (do Not store)
 | Field | Derivation |
