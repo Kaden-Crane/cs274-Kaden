@@ -1,6 +1,6 @@
 # Phase 3 — ERD
 ## Draw.io : https://app.diagrams.net/#WC1F4A5E0A87CF302%2FC1F4A5E0A87CF302!s86d74b0525894178a96b6ff9b1c699df#%7B%22pageId%22%3A%22kQOPeLmAxAubi_E7DJve%22%7D
-## PNG : <img width="1142" height="682" alt="ERD Notation drawio PNG" src="https://github.com/user-attachments/assets/3d467d79-fbb7-4dae-b03b-45dc60cc7ec4" />
+## PNG : <img width="1142" height="682" alt="ERD Notation drawio PNG" src="https://github.com/user-attachments/assets/29962225-4a19-4a87-a001-80942b364266" />
 ## What does each table represent?
 - Each table represents the transaction that is being made by a customer who places an order for boxes of baseball packs identifying what brand, series, and year that they are. It also tracks the price of what the customer pays.
 ## Why is it the type you labeled?
