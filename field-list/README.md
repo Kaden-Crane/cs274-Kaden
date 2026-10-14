@@ -25,14 +25,13 @@
 | --- | --- | --- | --- | --- |
 | SeriesID(PK) |INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
 | SeriesName | VARCHAR(50)  | NOT NULL | --- | Not sure what to put after |
-| Year(PK) | YEAR | NOT NULL | --- | Not sure what to put after |
+| Year | YEAR | NOT NULL | --- | Not sure what to put after |
 ## Box
 | Box |  |  |  |  |
 | --- | --- | --- | --- | --- |
 | BoxID(PK) | INT INSIGNED | NOT NULL | AUTO_INCREMENT | PK - surrogate, auto-assign |
 | BrandID(FK-> BrandID) |INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
 | SeriesID(FK-> SeriesID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
-| Year(FK-> SeriesID) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
 | Type | VARCHAR(50) | NULL | --- | Not sure what to put after |
 | PksPerBox | FLOAT | NOT NULL | --- | CHECK FOR NO 0 | 
 | CardsPerPack | DOUBLE | NOT NULL | --- | CHECK FOR NO 0 |
