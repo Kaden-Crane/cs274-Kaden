@@ -53,7 +53,6 @@
 | CustomerID(FK-> Customers) | INT UNSIGNED | AUTO_INCREMENT | FK - surrogate, auto-assign |
 | OrderDate |  |  |  |
 | OrderStatus |  |  |  |
-| OrderTotal |  |  |  |
 ## Payment
 | Payment |  |  |  |  |
 | --- | --- | --- | --- | --- |
