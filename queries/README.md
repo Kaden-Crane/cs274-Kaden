@@ -81,3 +81,45 @@ ORDER BY
     TotalQuantitySold DESC
 LIMIT 10;
 
+## Q6
+SELECT
+    B.BoxID,
+    B.Type AS Product,
+    B.QuantityInStock AS CurrentInventory
+FROM Box B
+ORDER BY B.QuantityInStock ASC;
+
+## Q7
+SELECT
+    C.CustomerID,
+    C.FirstName,
+    C.LastName,
+    C.Address,
+    C.City,
+    C.State,
+    C.ZipCode,
+    C.PhoneNumber,
+    C.Email
+FROM Customers C
+ORDER BY C.LastName, C.FirstName;
+
+## Q8
+SELECT
+    C.CustomerID,
+    CONCAT(C.FirstName, ' ', C.LastName) AS CustomerName,
+    O.OrderID,
+    O.OrderDate,
+    B.BoxID,
+    B.Type AS Product,
+    OI.Quantity
+FROM Customers C
+INNER JOIN Orders O
+    ON C.CustomerID = O.CustomerID
+INNER JOIN OrderItems OI
+    ON O.OrderID = OI.OrderID
+INNER JOIN Box B
+    ON OI.BoxID = B.BoxID
+ORDER BY
+    C.CustomerID,
+    O.OrderDate,
+    O.OrderID;
