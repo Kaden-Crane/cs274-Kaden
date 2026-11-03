@@ -85,20 +85,21 @@ LIMIT 10;
 SELECT
     B.BoxID,
     B.Type AS Product,
-    B.QuantityInStock AS CurrentInventory
+    B.Price
 FROM Box B
-ORDER BY B.QuantityInStock ASC;
+ORDER BY B.Price ASC;
 
 ## Q7
 SELECT
     C.CustomerID,
     C.FirstName,
     C.LastName,
-    C.Address,
+    C.Add1,
+    C.Add2,
     C.City,
     C.State,
-    C.ZipCode,
-    C.PhoneNumber,
+    C.Zip,
+    C.Phone,
     C.Email
 FROM Customers C
 ORDER BY C.LastName, C.FirstName;
@@ -111,7 +112,8 @@ SELECT
     O.OrderDate,
     B.BoxID,
     B.Type AS Product,
-    OI.Quantity
+    OI.Quantity,
+    OI.UnitPrice
 FROM Customers C
 INNER JOIN Orders O
     ON C.CustomerID = O.CustomerID
