@@ -5,6 +5,9 @@
 
 ## Q1
 
+-- Display all orders for CustomerID = 1
+-- COUNT() counts the number of orders placed
+
 SELECT
     C.CustomerID,
     C.FirstName,
@@ -17,111 +20,160 @@ WHERE C.CustomerID = 1
 GROUP BY
     C.CustomerID,
     C.FirstName,
-    C.LastName;
+    C.LastName
+HAVING COUNT(O.OrderID) >= 1;
+
+-- HAVING filters the grouped results after COUNT() is calculated.
 
 ## Q2
 
+-- Display every product included in each order
+-- along with the quantity purchased
+
 SELECT
-    O.OrderID,
-    O.OrderDate,
-    SUM(OI.Quantity) AS TotalItems,
-    SUM(OI.Quantity * OI.UnitPrice) AS OrderValue
-FROM Orders O
-INNER JOIN OrderItems OI
-    ON O.OrderID = OI.OrderID
-GROUP BY
-    O.OrderID,
-    O.OrderDate
-ORDER BY O.OrderID;
+    OI.OrderID,
+    OI.BoxID,
+    B.Type,
+    BR.BrandName,
+    S.SeriesName,
+    OI.Quantity
+FROM OrderItems OI
+INNER JOIN Box B
+    ON OI.BoxID = B.BoxID
+INNER JOIN Brand BR
+    ON B.BrandID = BR.BrandID
+INNER JOIN Series S
+    ON B.SeriesID = S.SeriesID
+ORDER BY OI.OrderID;
+
+-- Joins allow product details to be displayed
+-- for each item included in an order.
 
 ## Q3
 
+-- Calculate the total amount for each order
+
 SELECT
     O.OrderID,
     O.OrderDate,
-    SUM(OI.Quantity * OI.UnitPrice) AS TotalAmount
+    O.OrderStatus,
+    Totals.TotalAmount
 FROM Orders O
-INNER JOIN OrderItems OI
-    ON O.OrderID = OI.OrderID
-GROUP BY
-    O.OrderID,
-    O.OrderDate
+INNER JOIN
+(
+    SELECT
+        OrderID,
+        SUM(Quantity * UnitPrice) AS TotalAmount
+    FROM OrderItems
+    GROUP BY OrderID
+) AS Totals
+ON O.OrderID = Totals.OrderID
 ORDER BY O.OrderDate;
+
+-- The subquery calculates order totals.
+-- SUM() adds all item costs for each order.
 
  ## Q4
 
+-- Display orders placed between October 1 and October 10, 2026
+
 SELECT
-    CONCAT(C.FirstName, ' ', C.LastName) AS CustomerName,
-    COUNT(O.OrderID) AS TotalOrders
-FROM Customers C
-LEFT JOIN Orders O
-    ON C.CustomerID = O.CustomerID
-WHERE O.OrderDate BETWEEN '2026-10-01' AND '2026-10-31'
-GROUP BY
-    C.CustomerID,
-    C.FirstName,
-    C.LastName
-ORDER BY TotalOrders DESC;
+    OrderID,
+    CustomerID,
+    OrderDate,
+    OrderStatus
+FROM Orders
+WHERE OrderDate BETWEEN '2026-10-01' AND '2026-10-10'
+ORDER BY OrderDate;
+
+-- BETWEEN limits the results to a specific date range.
 
 ## Q5
 
+-- Find the products with the highest quantities sold
+
 SELECT
     B.BoxID,
-    B.Type AS Product,
-    SUM(OI.Quantity) AS TotalQuantitySold
-FROM Orders O
-INNER JOIN OrderItems OI
-    ON O.OrderID = OI.OrderID
+    BR.BrandName,
+    S.SeriesName,
+    Sales.TotalSold
+FROM
+(
+    SELECT
+        BoxID,
+        SUM(Quantity) AS TotalSold
+    FROM OrderItems
+    GROUP BY BoxID
+) AS Sales
 INNER JOIN Box B
-    ON OI.BoxID = B.BoxID
-GROUP BY
-    B.BoxID,
-    B.Type
-ORDER BY
-    TotalQuantitySold DESC
+    ON Sales.BoxID = B.BoxID
+INNER JOIN Brand BR
+    ON B.BrandID = BR.BrandID
+INNER JOIN Series S
+    ON B.SeriesID = S.SeriesID
+ORDER BY Sales.TotalSold DESC
 LIMIT 10;
 
+-- The subquery totals quantities sold for each product.
+-- Results are sorted from highest to lowest sales.
+
 ## Q6
+-- Assume QuantitySold represents inventory movement.
+-- Shows total quantities sold for each product.
+
 SELECT
     B.BoxID,
-    B.Type AS Product,
-    B.Price
+    BR.BrandName,
+    S.SeriesName,
+    SUM(OI.Quantity) AS QuantitySold
 FROM Box B
-ORDER BY B.Price ASC;
+INNER JOIN Brand BR
+    ON B.BrandID = BR.BrandID
+INNER JOIN Series S
+    ON B.SeriesID = S.SeriesID
+LEFT JOIN OrderItems OI
+    ON B.BoxID = OI.BoxID
+GROUP BY
+    B.BoxID,
+    BR.BrandName,
+    S.SeriesName
+ORDER BY QuantitySold DESC;
+
+-- SUM() calculates the total quantity sold per product.
+-- A real inventory system would subtract sales from stock-on-hand.
 
 ## Q7
+-- Retrieve customer contact information
+
 SELECT
-    C.CustomerID,
-    C.FirstName,
-    C.LastName,
-    C.Add1,
-    C.Add2,
-    C.City,
-    C.State,
-    C.Zip,
-    C.Phone,
-    C.Email
-FROM Customers C
-ORDER BY C.LastName, C.FirstName;
+    CustomerID,
+    FirstName,
+    LastName,
+    Email,
+    Phone,
+    Add1,
+    Add2,
+    City,
+    State,
+    Zip
+FROM Customers
+ORDER BY LastName, FirstName;
+
+-- Displays customer contact and address information.
 
 ## Q8
+-- Display customer information along with orders
+
 SELECT
     C.CustomerID,
     CONCAT(C.FirstName, ' ', C.LastName) AS CustomerName,
     O.OrderID,
     O.OrderDate,
-    B.BoxID,
-    B.Type AS Product,
-    OI.Quantity,
-    OI.UnitPrice
+    O.OrderStatus
 FROM Customers C
 INNER JOIN Orders O
     ON C.CustomerID = O.CustomerID
-INNER JOIN OrderItems OI
-    ON O.OrderID = OI.OrderID
-INNER JOIN Box B
-    ON OI.BoxID = B.BoxID
-ORDER BY
-    C.CustomerID,
-    O.OrderDate,
-    O.OrderID;
+ORDER BY O.OrderDate;
+
+-- This query allows the business to track
+-- which customers placed which orders.
