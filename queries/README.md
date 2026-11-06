@@ -1,6 +1,6 @@
 # Phase 5 — Queries
 ## Queries for Mission Statement
-##Phase 5A
+## Phase 5A JOIN Queries
 ## Q1
 -- Retrieve all orders placed by CustomerID = 1.
 -- The query joins the Customers table with the Orders table
@@ -210,8 +210,7 @@ ORDER BY
 -- when the purchase was made, and the quantity ordered.
 -- The results help the business track purchasing activity.
 
-##Phase 5B
--- Queries for Mission Statement
+## Phase 5B Aggregate functions
 
 ## Q1
 
